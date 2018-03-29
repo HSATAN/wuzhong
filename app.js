@@ -24,7 +24,7 @@ App({
                   data: {
                     nickName: userInfo.nickName,
                     rundata: res.encryptedData,
-                    sessionKey: code,
+                    code: code,
 
                     iv: res.iv
                   },
