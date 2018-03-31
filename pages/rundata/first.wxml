@@ -1,0 +1,2 @@
+<!--pages/rundata/first.wxml-->
+<text>{{openid}}</text>

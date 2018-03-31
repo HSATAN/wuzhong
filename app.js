@@ -5,48 +5,7 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        var code = res.code;
-        wx.getWeRunData({
-          success: function(res){
-            var data = res.encryptedData;
-            var iv = res.iv;
-            wx.getUserInfo({
-              success: function (user) {
-                var userInfo = user.userInfo //用户基本信息
-
-                wx.request({
-                  url: 'https://www.myenger.cn/rundata',
-                  data: {
-                    nickName: userInfo.nickName,
-                    rundata: res.encryptedData,
-                    code: code,
-
-                    iv: res.iv
-                  },
-                  header: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                  },
-                  method: 'POST',
-                  success: function (res) {
-                    console.log(res.data)
-
-                  }
-                })
-
-              }
-            })
-            
-
-          },
-        })
-        
-      }
-    })
+    
     
     // 获取用户信息
     wx.getSetting({
@@ -57,7 +16,7 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-              
+              console.log(this.globalData.openid)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
@@ -70,6 +29,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    openid: null,
   }
 })
