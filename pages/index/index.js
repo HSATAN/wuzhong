@@ -4,7 +4,6 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     step: 0,
@@ -57,7 +56,11 @@ Page({
   },
 
   clickMe: function(){
-    this.setData({openid:app.globalData.openid})
+    this.setData(
+      {
+        openid:app.globalData.openid,
+        userInfo: app.globalData.userInfo
+    })
     console.log(app.globalData.openid)
     
   },
@@ -80,7 +83,9 @@ Page({
                   url: 'https://www.myenger.cn/rundata',
                   data: {
                     nickName: userInfo.nickName,
+                    avatarUrl: userInfo.avatarUrl,
                     rundata: res.encryptedData,
+                    gender: userInfo.gender,
                     code: code,
                     iv: res.iv
                   },

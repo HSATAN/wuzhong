@@ -3,10 +3,9 @@
 <text></text>
 <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <text class="number">100</text>
+      <text class="number"></text>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-      <text class="userinfo-nickname">我的昵称号...</text>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
   <view class="rundata">
     <text class="run-step">{{step}}</text>
@@ -18,7 +17,7 @@
 <view class="container"  wx:for="{{rankdata}}"  wx:for-item="item" wx:for-index="index">
   <view class="userinfo">
       <text class="number">{{index+1}}</text>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{item.avatarUrl}}" background-size="cover"></image>
       <text class="userinfo-nickname">{{item.nickname}}</text>
   </view>
   <view class="rundata">
